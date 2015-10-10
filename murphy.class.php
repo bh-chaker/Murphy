@@ -65,12 +65,12 @@
                 {
                     $output = '';
 
+                    echo PHP_EOL.'====Output from '.$path.'==========='.PHP_EOL;
+
                     exec('php index.php "Murphy\\Test" path='.escapeshellarg($path).' dbconfig='.escapeshellarg(Args::get('dbconfig',Args::argv)),$output,$exit_code);
 
                     if($exit_code)
                         echo 'FATAL ERROR: '.$path.' terminated abnormally'.PHP_EOL;
-
-                    echo PHP_EOL.'====Output from '.$path.'==========='.PHP_EOL;
 
                     foreach($output as $opline)
                         echo $opline.PHP_EOL;
