@@ -36,8 +36,13 @@
 
             require($path);
             
-            foreach(self::instance()->tests as $test)
-                $test($this);
+            foreach(self::instance()->tests as $test){
+                try {
+                    $test($this);
+                } catch (\Exception $e) {
+                    $this->fail($e->getTraceAsString());
+                }
+            }
             
             exit(0);
         }
